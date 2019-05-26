@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Pending Task Available in Queue(Available for taking)</h3>
+
+{% if pending_data.count %}
+{{pending_data.title}}<a href="{% url 'accepted_task' pending_data.id %}"><button type="button" class="btn btn-primary">Accept</button></a>
+{% endif %}
+
+<h3>Task accepted by current user</h3>
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Title</th>
+        <th>Priority</th>
+        <th>Date Created</th>
+        <th>Created By</th>
+        <th>Last State</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for elem in task_data %}
+        <tr>
+          <td>
+            {{ elem.title }}
+          </td>
+          <td class="align-middle">{{elem.priority}}</td>
+          <td class="align-middle">{{elem.created}}</td>
+           <td class="align-middle"> {{elem.created_by}}</td>
+          <td class="align-middle">{{elem.last_state}}
+            <a href="{% url 'decline_task' elem.id %}"><button type="button" class="btn btn-primary">Decline</button></a></td>
+            <td><a href="{% url 'complete_task' elem.id %}"><button type="button" class="btn btn-primary">Complete Task</button></a></td>
+
+          <td></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+   <a href = "{% url 'create_task' %}"> <button type="button" class="btn btn-primary">Create New task</button></a>
+<a href = "{% url 'logout' %}"> <button type="button" class="btn btn-primary">Logout Button</button></a>
+
+{% endblock %}

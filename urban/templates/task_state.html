@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Task Title</th>
+        <th>State</th>
+        <th>Date Created</th>
+       </tr>
+    </thead>
+    <tbody>
+      {% for elem in task_state %}
+        <tr>
+          <td>
+             {{ elem.task }}
+          </td>
+          <td class="align-middle">{{elem.state}}</td>
+          <td class="align-middle">{{elem.created}}</td>
+
+          <td></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+   <a href = "{% url 'create_task' %}"> <button type="button" class="btn btn-primary">Create New task</button></a>
+{% endblock %}

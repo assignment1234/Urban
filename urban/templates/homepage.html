@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>No of available Store manager</h3>
+{{store_manager}}
+<div></div>
+
+<h3>No of available Delivery Person</h3>
+{{delivery_person}}
+<div></div>
+
+{% if user.is_authenticated %}
+<a href = "{% url 'logout' %}"> <button type="button" class="btn btn-primary">Logout Button</button></a>
+
+{% endif %}
+
+<a href = "{% url 'login' %}"> <button type="button" class="btn btn-primary">Login Button</button></a>
+
+
+{% endblock %}

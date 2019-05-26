@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Title</th>
+        <th>Priority</th>
+        <th>Date Created</th>
+        <th>Created By</th>
+        <th>Last State</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for elem in task_data %}
+        <tr>
+          <td>
+             <a href="{% url 'task_state' elem.id  %}">{{ elem.title }}</a>
+          </td>
+          <td class="align-middle">{{elem.priority}}</td>
+          <td class="align-middle">{{elem.created}}</td>
+           <td class="align-middle"> {{elem.created_by}}</td>
+            <td class="align-middle">{{elem.last_state}}
+                <a href="{% url 'cancel_task' elem.id %}" ><button type="button" class="btn btn-primary">Cancel Task</button></a></td>
+
+          <td></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+   <a href = "{% url 'create_task' %}"> <button type="button" class="btn btn-primary">Create New task</button></a>
+   <a href = "{% url 'logout' %}"> <button type="button" class="btn btn-primary">Logout</button></a>
+{% endblock %}
